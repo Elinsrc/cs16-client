@@ -160,7 +160,7 @@ void WeaponsResource :: LoadWeaponSprites( WEAPON *pWeapon )
 		pWeapon->hInactive = SPR_Load(sz);
 		pWeapon->rcInactive = p->rc;
 
-		gHR.iHistoryGap = max( gHR.iHistoryGap, pWeapon->rcActive.Height() );
+		gHR.iHistoryGap = Q_max( gHR.iHistoryGap, pWeapon->rcActive.Height() );
 	}
 	else
 		pWeapon->hInactive = 0;
@@ -182,7 +182,7 @@ void WeaponsResource :: LoadWeaponSprites( WEAPON *pWeapon )
 		pWeapon->hAmmo = SPR_Load(sz);
 		pWeapon->rcAmmo = p->rc;
 
-		gHR.iHistoryGap = max( gHR.iHistoryGap, pWeapon->rcActive.Height() );
+		gHR.iHistoryGap = Q_max( gHR.iHistoryGap, pWeapon->rcActive.Height() );
 	}
 	else
 		pWeapon->hAmmo = 0;
@@ -194,7 +194,7 @@ void WeaponsResource :: LoadWeaponSprites( WEAPON *pWeapon )
 		pWeapon->hAmmo2 = SPR_Load(sz);
 		pWeapon->rcAmmo2 = p->rc;
 
-		gHR.iHistoryGap = max( gHR.iHistoryGap, pWeapon->rcActive.Height() );
+		gHR.iHistoryGap = Q_max( gHR.iHistoryGap, pWeapon->rcActive.Height() );
 	}
 	else
 		pWeapon->hAmmo2 = 0;
@@ -342,7 +342,7 @@ int CHudAmmo::VidInit(void)
 	giBucketWidth = gHUD.GetSpriteRect(m_HUD_bucket0).Width();
 	giBucketHeight = gHUD.GetSpriteRect(m_HUD_bucket0).Height();
 
-	gHR.iHistoryGap = max( gHR.iHistoryGap, giBucketHeight);
+	gHR.iHistoryGap = Q_max( gHR.iHistoryGap, giBucketHeight);
 
 	// If we've already loaded weapons, let's get new sprites
 	gWR.LoadAllWeaponSprites();
@@ -1060,7 +1060,7 @@ int CHudAmmo::Draw(float flTime)
 
 	AmmoWidth = gHUD.GetSpriteRect(gHUD.m_HUD_number_0).Width();
 
-	a = (int) max( MIN_ALPHA, m_fFade );
+	a = (int) Q_max( MIN_ALPHA, m_fFade );
 
 	if (m_fFade > 0)
 		m_fFade -= (gHUD.m_flTimeDelta * 20);
@@ -1403,7 +1403,7 @@ float CHudAmmo::GetCrosshairGap( int weaponId )
 			minGap *= 1.4f;
 
 		minGap = baseMinGap + ( minGap - baseMinGap ) * xhair_dynamic_scale->value;
-		minGap = max( minGap, absMinGap );
+		minGap = Q_max( minGap, absMinGap );
 	}
 
 	if ( xhairPrevTime > clientTime )
@@ -1423,7 +1423,7 @@ float CHudAmmo::GetCrosshairGap( int weaponId )
 	else
 	{
 		xhairGap += deltaGap * xhair_dynamic_scale->value;
-		xhairGap = min( xhairGap, MAX_XHAIR_GAP );
+		xhairGap = Q_min( xhairGap, MAX_XHAIR_GAP );
 	}
 
 	if ( xhairShotsFired > 600 )
@@ -1431,7 +1431,7 @@ float CHudAmmo::GetCrosshairGap( int weaponId )
 
 	lastShotsFired = xhairShotsFired;
 
-	xhairGap = max( xhairGap, minGap );
+	xhairGap = Q_max( xhairGap, minGap );
 
 	return xhairGap + xhair_gap->value;
 }
@@ -1508,7 +1508,7 @@ void CHudAmmo::DrawCrosshair( int weaponId )
 	gap = ScaleForRes( GetCrosshairGap( weaponId ), ScreenHeight * gHUD.m_flScale );
 	length = ScaleForRes( xhair_size->value, ScreenHeight * gHUD.m_flScale );
 	thickness = ScaleForRes( xhair_thick->value, ScreenHeight * gHUD.m_flScale );
-	thickness = max( 1, thickness );
+	thickness = Q_max( 1, thickness );
 
 	inner.left = ( center_x - gap - thickness / 2 );
 	inner.right = ( inner.left + 2 * gap + thickness );
@@ -1647,8 +1647,8 @@ void CHudAmmo::DrawCrosshair()
 	}
 	else
 	{
-		m_flCrosshairDistance = min( m_flCrosshairDistance + iDeltaDistance, 15.0f );
-		m_iAlpha = max( m_iAlpha - 40, 120 );
+		m_flCrosshairDistance = Q_min( m_flCrosshairDistance + iDeltaDistance, 15.0f );
+		m_iAlpha = Q_max( m_iAlpha - 40, 120 );
 	}
 
 	if ( g_iShotsFired > 600 )
@@ -1659,7 +1659,7 @@ void CHudAmmo::DrawCrosshair()
 	CalculateCrosshairSize();
 
 	m_iAmmoLastCheck = g_iShotsFired;
-	m_flCrosshairDistance = max( m_flCrosshairDistance, iDistance );
+	m_flCrosshairDistance = Q_max( m_flCrosshairDistance, iDistance );
 	iLength = ( m_flCrosshairDistance - iDistance ) * 0.5 + 5;
 
 	if ( m_iAlpha > 255 )

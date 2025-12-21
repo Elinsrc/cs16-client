@@ -38,6 +38,8 @@ extern bool evdev_open;
 
 bool CL_IsDead();
 
+extern int g_ImGuiMouse;
+
 void IN_ToggleButtons( float forwardmove, float sidemove )
 {
 	static unsigned int moveflags = T | S;
@@ -128,6 +130,9 @@ void IN_ClientMoveEvent( float forwardmove, float sidemove )
 
 void IN_ClientLookEvent( float relyaw, float relpitch )
 {
+	if( g_ImGuiMouse )
+		return;
+
 	rel_yaw += relyaw;
 	rel_pitch += relpitch;
 }

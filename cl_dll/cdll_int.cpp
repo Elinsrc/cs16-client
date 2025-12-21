@@ -30,6 +30,10 @@
 #include "render_api.h"
 #include "mobility_int.h"
 #include "vgui_parser.h"
+#include "gl_export.h"
+#include "imgui_manager.h"
+
+int g_ImGuiMouse = 0;
 
 cl_enginefunc_t		gEngfuncs  = { };
 render_api_t		gRenderAPI = { };
@@ -76,6 +80,8 @@ void DLLEXPORT HUD_Shutdown( void )
 	gHUD.Shutdown();
 	Input_Shutdown();
 	Localize_Free();
+
+	GL_Shutdown();
 }
 
 
@@ -189,6 +195,7 @@ int DLLEXPORT HUD_VidInit( void )
 	isLoaded = true;
 
 	//VGui_Startup();
+	g_ImGuiManager.VidInitialize();
 
 	return 1;
 }
@@ -208,6 +215,7 @@ void DLLEXPORT HUD_Init( void )
 	InitInput();
 	gHUD.Init();
 	//Scheme_Init();
+	GL_Init();
 }
 
 
@@ -223,6 +231,8 @@ redraw the HUD.
 int DLLEXPORT HUD_Redraw( float time, int intermission )
 {
 	gHUD.Redraw( time, intermission );
+
+	g_ImGuiManager.NewFrame();
 
 	return 1;
 }
@@ -408,6 +418,14 @@ int DLLEXPORT HUD_MobilityInterface( mobile_engfuncs_t *mobileapi )
 
 	return 0;
 }
+
+#if __ANDROID__
+int DLLEXPORT IN_ClientTouchEvent(int fingerID, float x, float y, float dx, float dy)
+{
+	g_ImGuiManager.TouchEvent(fingerID, x, y, dx, dy);
+	return g_ImGuiManager.IsCursorRequired() ? 1 : 0;
+}
+#endif
 
 extern "C" void DLLEXPORT HUD_ChatInputPosition( int *x, int *y )
 {

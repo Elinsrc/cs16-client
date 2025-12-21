@@ -93,6 +93,10 @@ struct kbutton_s   DLLEXPORT *KB_Find( const char *name );
 
 void       DLLEXPORT IN_ClientMoveEvent( float forwardmove, float sidemove );
 void       DLLEXPORT IN_ClientLookEvent( float relyaw, float relpitch );
+
+#if __ANDROID__
+int DLLEXPORT IN_ClientTouchEvent( int fingerID, float x, float y, float dx, float dy );
+#endif
 }
 
 

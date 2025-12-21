@@ -27,6 +27,8 @@
 #include "vgui_parser.h"
 #include "com_weapons.h"
 
+#include "imgui_manager.h"
+
 extern int g_weaponselect;
 extern cl_enginefunc_t gEngfuncs;
 
@@ -365,7 +367,7 @@ Return 1 to allow engine to process the key, otherwise, act on it as needed
 */
 int DLLEXPORT HUD_Key_Event( int down, int keynum, const char *pszCurrentBinding )
 {
-	return 1;
+	return g_ImGuiManager.KeyInput(down != 0, keynum, pszCurrentBinding) ? 1 : 0;
 }
 
 void IN_BreakDown( void ) { KeyDown( &in_break );}

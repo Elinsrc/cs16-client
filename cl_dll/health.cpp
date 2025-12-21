@@ -315,13 +315,13 @@ void CHudHealth::CalcDamageDirection( Vector vecFrom )
 	else
 	{
 		if (side > EPSILON)
-			m_fAttack[0] = max(m_fAttack[0], side);
+			m_fAttack[0] = Q_max(m_fAttack[0], side);
 		if (side < -EPSILON)
-			m_fAttack[1] = max(m_fAttack[1], 0 - side );
+			m_fAttack[1] = Q_max(m_fAttack[1], 0 - side );
 		if (front > EPSILON)
-			m_fAttack[2] = max(m_fAttack[2], front);
+			m_fAttack[2] = Q_max(m_fAttack[2], front);
 		if (front < -EPSILON)
-			m_fAttack[3] = max(m_fAttack[3], 0 - front );
+			m_fAttack[3] = Q_max(m_fAttack[3], 0 - front );
 	}
 }
 
@@ -340,14 +340,14 @@ void CHudHealth::DrawPain(float flTime)
 		if( m_fAttack[i] > EPSILON )
 		{
 			/*GetPainColor(r, g, b);
-			shade = a * max( m_fAttack[i], 0.5 );
+			shade = a * Q_max( m_fAttack[i], 0.5 );
 			DrawUtils::ScaleColors(r, g, b, shade);*/
 
-			a = max( m_fAttack[i], 0.5 );
+			a = Q_max( m_fAttack[i], 0.5 );
 
 			SPR_Set( m_hSprite, 255 * a, 255 * a, 255 * a);
 			SPR_DrawAdditive( i, m_vAttackPos[i].x, m_vAttackPos[i].y, NULL );
-			m_fAttack[i] = max( 0, m_fAttack[i] - fFade );
+			m_fAttack[i] = Q_max( 0, m_fAttack[i] - fFade );
 		}
 		else
 			m_fAttack[i] = 0;
@@ -386,7 +386,7 @@ void CHudHealth::DrawDamage(float flTime)
 
 		if ( m_bitsDamage & giDmgFlags[i] )
 		{
-			pdmg->fExpire = min( flTime + DMG_IMAGE_LIFE, pdmg->fExpire );
+			pdmg->fExpire = Q_min( flTime + DMG_IMAGE_LIFE, pdmg->fExpire );
 
 			if ( pdmg->fExpire <= flTime		// when the time has expired
 				 && a < 40 )						// and the flash is at the low point of the cycle

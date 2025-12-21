@@ -354,7 +354,7 @@ void EV_HugWalls(TEMPENTITY *te, pmtrace_s *ptr)
 
 	Vector v2 = CrossProduct( ptr->plane.normal, CrossProduct( ptr->plane.normal, norm ) );
 
-	len = min( len * 1.5, 3000.0f );
+	len = Q_min( len * 1.5, 3000.0f );
 
 	te->entity.baseline.origin.x = v2.z * len;
 	te->entity.baseline.origin.y = v2.y * len;

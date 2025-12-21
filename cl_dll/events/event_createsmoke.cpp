@@ -69,7 +69,7 @@ void EV_CreateSmoke(event_args_s *args)
 
 				// !!! Setup model !!!
 				pTemp->entity.model = (struct model_s*)pGasModel;
-				pTemp->frameMax = max( 0, pGasModel->numframes - 1 );
+				pTemp->frameMax = Q_max( 0, pGasModel->numframes - 1 );
 
 				pTemp->entity.curstate.fuser3 = gEngfuncs.GetClientTime() + 15.0f; // start fading after 15 sec
 				pTemp->entity.curstate.fuser4 = gEngfuncs.GetClientTime(); // entity creation time
