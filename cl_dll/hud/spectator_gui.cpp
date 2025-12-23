@@ -37,6 +37,8 @@ version.
 #include "triangleapi.h"
 #include "draw_util.h"
 
+#include "ui_ScorePanel.h"
+
 /*
  * We will draw all elements inside a box. It's size 16x10.
  */
@@ -258,7 +260,7 @@ void CHudSpectatorGui::CalcAllNeededData( )
 
 	label.m_iCounterTerrorists = 0;
 	label.m_iTerrorists = 0;
-	for( int i = 1; i <= gHUD.m_Scoreboard.m_iNumTeams; i++ )
+	for( int i = 1; i <= m_iScoreboard.m_iNumTeams; i++ )
 	{
 		switch( g_TeamInfo[i].teamnumber )
 		{

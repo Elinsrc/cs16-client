@@ -23,6 +23,8 @@
 #include <stdio.h>
 #include "draw_util.h"
 
+#include "ui_ScorePanel.h"
+
 float color[3];
 
 struct DeathNoticeItem {
@@ -172,7 +174,7 @@ int CHudDeathNotice :: MsgFunc_DeathMsg( const char *pszName, int iSize, void *p
 
 	//if (gViewPort)
 	//	gViewPort->DeathMsg( killer, victim );
-	gHUD.m_Scoreboard.DeathMsg( killer, victim );
+	m_iScoreboard.DeathMsg( killer, victim );
 
 	gHUD.m_Spectator.DeathMessage(victim);
 	int i;
@@ -189,7 +191,7 @@ int CHudDeathNotice :: MsgFunc_DeathMsg( const char *pszName, int iSize, void *p
 
 	//if (gViewPort)
 		//gViewPort->GetAllPlayersInfo();
-	gHUD.m_Scoreboard.GetAllPlayersInfo();
+	m_iScoreboard.GetAllPlayersInfo();
 
 	// Get the Killer's name
 	const char *killer_name = g_PlayerInfoList[ killer ].name;

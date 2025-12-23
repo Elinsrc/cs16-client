@@ -28,6 +28,8 @@
 #include "GameStudioModelRenderer.h"
 #include "com_weapons.h"
 
+#include "ui_ScorePanel.h"
+
 #include <cstring>
 
 #include "events.h"
@@ -106,6 +108,8 @@ int CHud :: MsgFunc_InitHUD( const char *pszName, int iSize, void *pbuf )
 			pList->p->InitHUDData();
 		pList = pList->pNext;
 	}
+
+	m_iScoreboard.InitHUDData();
 
 	g_iFreezeTimeOver = 0;
 

@@ -28,6 +28,7 @@
 #include "com_weapons.h"
 
 #include "imgui_manager.h"
+#include "ui_ScorePanel.h"
 
 extern int g_weaponselect;
 extern cl_enginefunc_t gEngfuncs;
@@ -848,7 +849,7 @@ int CL_ButtonBits( int bResetState )
 	}
 
 	// Dead or in intermission? Shore scoreboard, too
-	if( gHUD.m_Scoreboard.ShouldDrawScoreboard( ))
+	if( m_iScoreboard.ShouldDrawScoreboard( ))
 	{
 		bits |= IN_SCORE;
 	}

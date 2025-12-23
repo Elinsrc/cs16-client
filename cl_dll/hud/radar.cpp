@@ -33,6 +33,7 @@ version.
 #include "draw_util.h"
 #include "triangleapi.h"
 #include "vgui_parser.h"
+#include "ui_ScorePanel.h"
 #ifndef M_PI
 #define M_PI		3.14159265358979323846	// matches value in gcc v2 math.h
 #endif
@@ -282,7 +283,7 @@ int CHudRadar::Draw(float flTime)
 		 gHUD.m_fPlayerDead )
 		return 1;
 
-	int iTeamNumber = g_PlayerExtraInfo[ gHUD.m_Scoreboard.m_iPlayerNum ].teamnumber;
+	int iTeamNumber = g_PlayerExtraInfo[ m_iScoreboard.m_iPlayerNum ].teamnumber;
 	int r, g, b;
 
 	if( cl_radartype->value )
@@ -306,7 +307,7 @@ int CHudRadar::Draw(float flTime)
 	for(int i = 0; i < 33; i++)
 	{
 		// skip local player and dead players
-		if( i == gHUD.m_Scoreboard.m_iPlayerNum || g_PlayerExtraInfo[i].dead )
+		if( i == m_iScoreboard.m_iPlayerNum || g_PlayerExtraInfo[i].dead )
 			continue;
 
 		// skip non-teammates
@@ -336,7 +337,7 @@ int CHudRadar::Draw(float flTime)
 	}
 
 	// Terrorist specific code( C4 Bomb )
-	if( g_PlayerExtraInfo[gHUD.m_Scoreboard.m_iPlayerNum].teamnumber == TEAM_TERRORIST )
+	if( g_PlayerExtraInfo[m_iScoreboard.m_iPlayerNum].teamnumber == TEAM_TERRORIST )
 	{
 		if ( !g_PlayerExtraInfo[33].dead &&
 			 g_PlayerExtraInfo[33].radarflashes &&
@@ -354,7 +355,7 @@ int CHudRadar::Draw(float flTime)
 		}
 	}
 	// Counter-Terrorist specific code( hostages )
-	else if( g_PlayerExtraInfo[gHUD.m_Scoreboard.m_iPlayerNum].teamnumber == TEAM_CT )
+	else if( g_PlayerExtraInfo[m_iScoreboard.m_iPlayerNum].teamnumber == TEAM_CT )
 	{
 		// draw hostages for CT
 		for( int i = 0; i < MAX_HOSTAGES; i++ )
@@ -384,7 +385,7 @@ int CHudRadar::Draw(float flTime)
 
 void CHudRadar::DrawPlayerLocation( int y )
 {
-	const char *szLocation = g_PlayerExtraInfo[gHUD.m_Scoreboard.m_iPlayerNum].location;
+	const char *szLocation = g_PlayerExtraInfo[m_iScoreboard.m_iPlayerNum].location;
 	if( szLocation[0] )
 	{
 		int x = (m_hRadarOpaque.rect.Width()) / 2;

@@ -26,6 +26,8 @@
 #include "screenfade.h"
 #include "draw_util.h"
 
+#include "ui_ScorePanel.h"
+
 #ifdef _MSC_VER
 #pragma warning(disable: 4244)
 #endif
@@ -513,7 +515,7 @@ int CHudSpectator::Draw(float flTime)
 	
 	// make sure we have player info
 	//gViewPort->GetAllPlayersInfo();
-	gHUD.m_Scoreboard.GetAllPlayersInfo();
+	m_iScoreboard.GetAllPlayersInfo();
 
 	// loop through all the players and draw additional infos to their sprites on the map
 	for (int i = 0; i < MAX_PLAYERS; i++)
@@ -729,7 +731,7 @@ void CHudSpectator::FindNextPlayer(bool bReverse)
 
 	// make sure we have player info
 	//gViewPort->GetAllPlayersInfo();
-	gHUD.m_Scoreboard.GetAllPlayersInfo();
+	m_iScoreboard.GetAllPlayersInfo();
 
 	do
 	{

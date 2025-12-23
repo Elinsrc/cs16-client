@@ -345,7 +345,7 @@ protected:
 	bool ignoreThisMotd;
 };
 
-
+/*
 class CHudScoreboard: public CHudBase
 {
 	friend class CHudSpectatorGui;
@@ -388,7 +388,7 @@ private:
 	bool m_bDrawStroke;
 	cvar_t *cl_showpacketloss;
 	cvar_t *cl_showplayerversion;
-};
+};*/
 
 //
 //-----------------------------------------------------
@@ -710,7 +710,7 @@ public:
 	void EnableIcon( const char *pszIconName, unsigned char red, unsigned char green, unsigned char blue );
 	void DisableIcon( const char *pszIconName );
 
-	friend class CHudScoreboard;
+	//friend class CHudScoreboard;
 
 private:
 
@@ -1050,7 +1050,7 @@ public:
 	CHudAmmoSecondary m_AmmoSecondary;
 	CHudTextMessage m_TextMessage;
 	CHudStatusIcons m_StatusIcons;
-	CHudScoreboard  m_Scoreboard;
+	//CHudScoreboard  m_Scoreboard;
 	CHudMOTD        m_MOTD;
 	CHudMoney       m_Money;
 	CHudTimer       m_Timer;

@@ -36,6 +36,8 @@
 
 #include "draw_util.h"
 
+#include "ui_ScorePanel.h"
+
 #if _WIN32
 #define strncasecmp _strnicmp
 #endif
@@ -92,7 +94,7 @@ public:
 
 	virtual bool CanShowSpeakerLabels()
 	{
-		return !gHUD.m_Scoreboard.m_bForceDraw && !gHUD.m_Scoreboard.m_bShowscoresHeld;
+		return !m_iScoreboard.m_bShowscoresHeld;
 	}
 };
 static CCStrikeVoiceStatusHelper g_VoiceStatusHelper;
@@ -389,7 +391,7 @@ void CHud :: Init( void )
 	// all things that have own background and must be drawn last
 	m_ProgressBar.Init();
 	m_Menu.Init();
-	m_Scoreboard.Init();
+	//m_Scoreboard.Init();
 
 	GetClientVoice()->Init( &g_VoiceStatusHelper );
 
