@@ -29,6 +29,7 @@
 
 #include "imgui_manager.h"
 #include "ui_ScorePanel.h"
+#include "ui_MOTD.h"
 
 extern int g_weaponselect;
 extern cl_enginefunc_t gEngfuncs;
@@ -676,12 +677,12 @@ void DLLEXPORT CL_CreateMove ( float frametime, struct usercmd_s *cmd, int activ
 
 		if ( !(in_klook.state & 1 ) )
 		{	
-			if(gHUD.m_MOTD.m_bShow)
+			/*if(gHUD.m_MOTD.m_bShow)
 			{
 				gHUD.m_MOTD.scroll -= CL_KeyState (&in_forward);
 				gHUD.m_MOTD.scroll += CL_KeyState (&in_back);
 			}
-			else
+			else*/
 			{
 				cmd->forwardmove += cl_forwardspeed->value * CL_KeyState (&in_forward);
 				cmd->forwardmove -= cl_backspeed->value * CL_KeyState (&in_back);
@@ -772,8 +773,8 @@ int CL_ButtonBits( int bResetState )
 
 	if ( in_attack.state & 3 )
 	{
-		if(gHUD.m_MOTD.m_bShow)
-			gHUD.m_MOTD.Reset();
+		if(m_iMOTD.m_bShow)
+			m_iMOTD.Reset();
 		else
 			bits |= IN_ATTACK;
 	}

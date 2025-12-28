@@ -386,7 +386,7 @@ void CHud :: Init( void )
 	m_StatusBar.Init();
 	m_DeathNotice.Init();
 	m_TextMessage.Init();
-	m_MOTD.Init();
+	//m_MOTD.Init();
 
 	// all things that have own background and must be drawn last
 	m_ProgressBar.Init();

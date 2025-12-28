@@ -321,7 +321,7 @@ private:
 //  MOTD in cs16 must render HTML, so it disabled
 //
 
-class CHudMOTD : public CHudBase
+/*class CHudMOTD : public CHudBase
 {
 public:
 	int Init( void );
@@ -345,7 +345,6 @@ protected:
 	bool ignoreThisMotd;
 };
 
-/*
 class CHudScoreboard: public CHudBase
 {
 	friend class CHudSpectatorGui;
@@ -1051,7 +1050,7 @@ public:
 	CHudTextMessage m_TextMessage;
 	CHudStatusIcons m_StatusIcons;
 	//CHudScoreboard  m_Scoreboard;
-	CHudMOTD        m_MOTD;
+	//CHudMOTD        m_MOTD;
 	CHudMoney       m_Money;
 	CHudTimer       m_Timer;
 	CHudRadio       m_Radio;

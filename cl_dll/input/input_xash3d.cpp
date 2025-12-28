@@ -181,11 +181,11 @@ void IN_Move( float frametime, usercmd_t *cmd )
 		rel_yaw *= sensitivity->value;
 		rel_pitch *= sensitivity->value;
 	}
-	if(gHUD.m_MOTD.cl_hide_motd->value == 0.0f && gHUD.m_MOTD.m_bShow)
+	/*if(gHUD.m_MOTD.cl_hide_motd->value == 0.0f && gHUD.m_MOTD.m_bShow)
 	{
 		gHUD.m_MOTD.scroll += rel_pitch;
 	}
-	else
+	else*/
 	{
 		viewangles[PITCH] += rel_pitch;
 		viewangles[YAW] += rel_yaw;
